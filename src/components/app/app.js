@@ -7,8 +7,6 @@ import EmployeesList from '../emloyees-list/employees-list';
 import EmployeesAddForm from '../employees-add-form/employees-add-form';
 
 import './app.css';
-// import { toHaveFocus } from '@testing-library/jest-dom/dist/matchers';
-// import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 
 class App extends Component {
 	constructor(props) {
@@ -95,10 +93,22 @@ class App extends Component {
 		this.setState({ filter });
 	};
 
+	onSalaryChange = (name, salary) => {
+		this.setState((state) => ({
+			data: state.data.map((item) => {
+				if (item.name === name) {
+					return { ...item, salary };
+				}
+				return item;
+			}),
+		}));
+	};
+
 	render() {
 		const { data, term, filter } = this.state;
 		const employees = this.state.data.length;
 		const increased = this.state.data.filter((item) => item.increase).length;
+
 		// const visibleData = this.searchEmp(data, term);
 		//* делаем двойную фильтрацию. По поиску и по кнопкам.
 		const visibleData = this.filterPost(this.searchEmp(data, term), filter);
@@ -115,6 +125,7 @@ class App extends Component {
 					data={visibleData}
 					onDelete={this.deleteItem}
 					onToggleProp={this.onToggleProp}
+					onSalaryChange={this.onSalaryChange}
 					// onToggleRise={this.onToggleRise}
 				/>
 				<EmployeesAddForm onAdd={this.addItem} />
