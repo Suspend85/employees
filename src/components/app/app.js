@@ -43,15 +43,6 @@ class App extends Component {
 	};
 
 	onToggleProp = (id, prop) => {
-		// this.setState(({ data }) => {
-		// const index = data.findIndex((elem) => elem.id === id);
-		// const old = data[index];
-		// const newItem = { ...old, increase: !old.increase };
-		// const newArray = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
-		// return {
-		// 	data: newArray,
-		// };
-		// });
 
 		this.setState(({ data }) => ({
 			data: data.map((item) => {
@@ -74,7 +65,6 @@ class App extends Component {
 	};
 
 	onUpdateSearch = (term) => {
-		//! {term} - Сокращенная запись объекта {term:term}
 		this.setState({ term });
 	};
 
@@ -109,7 +99,6 @@ class App extends Component {
 		const employees = this.state.data.length;
 		const increased = this.state.data.filter((item) => item.increase).length;
 
-		// const visibleData = this.searchEmp(data, term);
 		//* делаем двойную фильтрацию. По поиску и по кнопкам.
 		const visibleData = this.filterPost(this.searchEmp(data, term), filter);
 

@@ -5,7 +5,7 @@ class EmployeesListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSalary: '',
+			currentSalary: 0,
 		};
 	}
 
@@ -16,8 +16,7 @@ class EmployeesListItem extends Component {
 		this.props.onSalaryChange(this.props.name, salaryChange);
 	};
 	onSalaryInput = (e) => {
-		let sal = '';
-
+		let sal = 0;
 		if (!e.target.value) {
 			e.target.value = 0 + '$';
 		} else {
@@ -26,7 +25,7 @@ class EmployeesListItem extends Component {
 		console.log(e.target.value);
 		this.setState({ currentSalary: sal });
 	};
-
+	
 	render() {
 		const { name, salary, onDelete, onToggleProp, increase, rise } = this.props;
 
@@ -40,14 +39,16 @@ class EmployeesListItem extends Component {
 
 		return (
 			<li className={classNames}>
-				<span className="list-group-item-label" onClick={onToggleProp} data-toggle="rise">
+				<span className="list-group-item-label" onClick={onToggleProp} data-toggle="rise"
+					// style={{ fontSize: '40px', color: 'red', transition: 'all', WebkitTransition: 'all', msTransition: 'all' }}
+				>
 					{name}
 				</span>
 				<input
+					
 					type="text"
 					className="list-group-item-input"
 					defaultValue={salary + '$'}
-					// defaultValue={salary}
 					onChange={this.onSalaryChange2}
 					onBlur={this.onSalaryInput}
 				/>
